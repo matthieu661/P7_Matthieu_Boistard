@@ -12,9 +12,11 @@ postman
 add-on :
 nodemon (utility)
 
-
+npm install :
 expresse (framework)
 jwt
+body-parser ( remplacer par modules interne a express )
+bcrypte
 
 
 
@@ -35,7 +37,7 @@ API REST create : basique
 - SQL installation de sequelize : ---> npm install -g sequelize-cli	
 	- sequelize init
 	
-	**création des models :
+	**création des models(class) :
 	
 	/powershell/cd repo
 	
@@ -71,5 +73,47 @@ API REST create : basique
 			--> create database P7_production
 			
 	- test sous workbench, les bases de données doivent etre vibles dans le local.
+			( un schema est dispo pour visualiser les tables et les associations )
 	
+- creation de la structure du Projet : 
+	- dossier : controllers / routes / middlewares
+	-  fichier : userControler.js / user-routes.js 
+
+	server.js --> app.js --> [routes] --> [controllers] --> [Account] 
+	
+
+- creation du cablage des routes :
+	
+	app.js --> user-routes.js :
+		" const userRoutes = require('./routes/user-routes'); "
+			user-routes.js --> userControler.js
+				" const userCtrl = require("../controllers/Account/userRegister"); "
+				" const userCtrl = require("../controllers/Account/userLogin); "
+				
+- creation logique pour user 
+
+	./Account/userRegister.js : 
+	
+	- function register : test postman : OK / test mysql : SELECT * FROM Users = OK
+			doit : 
+			convenir au model,
+			utiliser bcrypt pour le mdp,
+			avoir un email unique,
+			par default isAdmin = 0
 			
+	./Account/userLogin.js : 
+	
+	- function login : test postman : OK 
+			doit : 
+			recuperer email et le comparer dans db
+			generer un token jwt 
+	
+		-creation d'un middleware jsonwebtoken ( ./utils/jwt.utils.js )
+			mémo : openclassroomP7 -->sha256 = 5d247c460793437146f7fd297d358e0ff78d06ef1bb5e52952dd19303560ae6b
+			
+			- connecttion jwt.utils.js ---> userLogin.js   
+					" const jwtUtils = require('../../utils/jwt.utils') "
+			
+			
+		
+	------> commit " base de donnée crée et connecté, structure du projet créé, mise en place des routes pour user "		

@@ -2,6 +2,8 @@
 const express = require('express');
 
 
+// routes const :
+const userRoutes = require('./routes/user-routes')
 
 const app = express();
 
@@ -10,15 +12,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// routes const :
 
 // route use :
+app.use("/api/users", userRoutes);
+
 
 // route test :
-app.use('/', function (req, res) {
-    res.setHeader( 'Content-Type', 'text/html');
-    res.status(200).send('<H1>hello, bienvenue sur mon server test</h1>');
-})
+
 
 
 module.exports = app;
