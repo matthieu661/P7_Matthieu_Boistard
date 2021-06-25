@@ -1,0 +1,75 @@
+Node -v : v14.16.0
+Npm -v : 6.14.11
+ide : vs-code
+versioning : github
+
+DB:
+Workbench 8.0
+mysql
+Utility:
+postman 
+
+add-on :
+nodemon (utility)
+
+
+expresse (framework)
+jwt
+
+
+
+Start P7
+- créer un repo	  : 	https://github.com/matthieu661/P7_Matthieu_Boistard
+- cloner le repos : ---> git clone https://github.com/matthieu661/P7_Matthieu_Boistard	
+
+API REST create : basique
+
+- initialiser npm : ---> npm init
+- installation des dependances : 
+	- express : npm install express --save
+	- nodemon : npm install -g nodemon
+- Création des fichiers basiques :
+	- server.js 
+	- app.js
+
+- SQL installation de sequelize : ---> npm install -g sequelize-cli	
+	- sequelize init
+	
+	**création des models :
+	
+	/powershell/cd repo
+	
+	model User :
+	--> sequelize model:create --attributes "email:string username:string mdp:string isAdmin:boolean BIO:string" --name User
+	model Post
+	--> sequelize model:create --attributes "idUSERS:integer title:string content:string attachement:string likes:integer" --name Post
+	
+	(creation automatique via sequelize-cli des fichier migration et models)
+	
+	**Completion des model dans vs-code :
+	
+	./models/user.js ./models.post.js (
+	
+	./migrations/...create-user.js ./migrations/ ...create-post.js
+	
+	(sequelize-cli ne crée que le squelette basqiue, les options sont à rajouter dans les fichiers models.)
+	(Pour associer les tables, User(parent) --> Post(child)
+			- definire avec associate dans model :
+				models.User.hasMany(models.Post) (parent)
+				models.Post.belongTo(models.User... (child)
+			- definir le references dans migration pour le child :
+				references : { model: 'parent', key: 'id' }
+				
+	
+-SQL creation des bases de données
+	- (dans mon cas) :
+		cmd --> set PATH=%PATH%;C:\Program Files\MySQL\MySQL Server 8.0\bin
+			--> mysql -u root -
+				>Antilops123
+			--> create database P7_dev
+			--> create database P7_test
+			--> create database P7_production
+			
+	- test sous workbench, les bases de données doivent etre vibles dans le local.
+	
+			
