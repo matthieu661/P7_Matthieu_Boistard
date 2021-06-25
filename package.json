@@ -1,0 +1,25 @@
+{
+  "name": "p7-matthieu-boistard",
+  "version": "1.0.0",
+  "description": "reseau social groupomania",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthieu661/P7_Matthieu_Boistard.git"
+  },
+  "author": "matthieu boistard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthieu661/P7_Matthieu_Boistard/issues"
+  },
+  "homepage": "https://github.com/matthieu661/P7_Matthieu_Boistard#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  }
+}
