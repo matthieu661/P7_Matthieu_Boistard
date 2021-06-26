@@ -105,7 +105,7 @@ API REST create : basique
 	
 	- function login : test postman : OK 
 			doit : 
-			recuperer email et le comparer dans db
+			recuperer email et le comparer dans la db
 			generer un token jwt 
 	
 		-creation d'un middleware jsonwebtoken ( ./utils/jwt.utils.js )
@@ -117,3 +117,33 @@ API REST create : basique
 			
 		
 	------> commit " base de donnée crée et connecté, structure du projet créé, mise en place des routes pour user "		
+	
+	
+			- modification de la function Register :
+				- elle ne dois pas accepter de username similaire 
+				
+			- Validation des données Regex et min.length sur les routes Users
+				- email : regex
+				- username : length.min length.max
+				- mdp : regex 
+	Alerte --->	- bio : si remplis length.min length.max (ne fonctionne pas peut etre a cause du AllowedNull : true ou du type text dans bdd)
+				
+	Alerte ---> - probleme pour exporter les regex ( a revoir si temps OK )			
+				
+			- Ajout de la verification des par token pour les routes // ( à refactoriser et a importer dans le fichier routter si temps OK )
+			
+					- création d'un [utils] pour l'authentification JWT
+							-->jwt.utils.js
+					
+			- création des routes users ajout d'un dossier onAccount :
+			
+					- .Account/onAncount/.getAllUser.js GET ALL 
+					Postman OK
+					- .Account/onAncount/.getOneUser.js GET ONE
+					Postman OK
+					- .Account/onAncount/.modifyUser.js PUT 
+					Postman OK
+					- .Account/onAncount/.deleteUser.js DELETE 
+					Postman OK
+					
+	-------> commot " route User, logique User avec validation des données et authentification "  
