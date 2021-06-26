@@ -1,31 +1,31 @@
 const jwt = require('jsonwebtoken');
 
 // openclassroomP7 en sha256
-const SECRET = '5d247c460793437146f7fd297d358e0ff78d06ef1bb5e52952dd19303560ae6b';
+const JWT_SIGN_SECRET = '5d247c460793437146f7fd297d358e0ff78d06ef1bb5e52952dd19303560ae6b';
 
 module.exports = {
-    generateTokenForUser: function(userData) {
+    generateToken: function(userData) {
       return jwt.sign({
         userId: userData.id,
         isAdmin: userData.isAdmin
       },
-      SECRET,
+      JWT_SIGN_SECRET,
       {
         expiresIn: '1h'
       })
     },
-    GrabAuth: function(authorization) {
+    parseAuthorization: function(authorization) {
       return (authorization != null) ? authorization.replace('Bearer ', '') : null;
     },
-    grabId: function(authorization) {
-      const userId = -1;
-      const token = module.exports.GrabAuth(authorization);
+    getUserId: function(authorization) {
+      var userId = -1;
+      var token = module.exports.parseAuthorization(authorization);
       if(token != null) {
         try {
-          const jwtToken = jwt.verify(token, SECRET);
+          var jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
           if(jwtToken != null)
             userId = jwtToken.userId;
-        } catch(err){}
+        } catch(err) { }
       }
       return userId;
     }

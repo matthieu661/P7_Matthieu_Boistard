@@ -1,13 +1,11 @@
-
-
 const models = require('../../../models');
 const jwtUtils = require('../../../utils/jwt.utils')
 
 
 module.exports = {
     modifyUser: async function (req, res) {
-        const HeaderAuth = await req.headers['authorization'];
-        const userId = await jwtUtils.grabId(HeaderAuth);
+        const HeaderAuth =  req.headers['authorization'];
+        const userId =  jwtUtils.getUserId(HeaderAuth);
 
         if (userId < 0)
             return res.status(400).json({ 'error': 'invalide Token' })

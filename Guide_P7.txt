@@ -147,3 +147,28 @@ API REST create : basique
 					Postman OK
 					
 	-------> commot " route User, logique User avec validation des données et authentification "  
+	
+	Alerte ---> - tentative d'exporte de la fonction de recuperation d'id ( probleme de scope ) ...
+			
+	Alerte ---> - mauvais manip.. oublié de ctrlS ... reparation du jwt.utils.js  OK		
+			
+			- cration des fichiers :
+					
+					./controllers/Post/..
+					
+						-createPost.js
+						-deletePost.js
+						-getAllPost.js
+						-getOnePost.js
+						-modifyPost.js
+						
+			- creation du routage vers les controllers.
+
+				app.js ok --> routes-post --> ./controller/Post/...
+				
+			- création de la logique :
+			
+						-createPost.js : OK
+							Postman :OK
+						-getAllPost.js : OK
+							Postman : OK 

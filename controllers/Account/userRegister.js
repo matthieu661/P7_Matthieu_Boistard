@@ -9,7 +9,7 @@ const regMdp = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,
 
 
 module.exports = {
-    
+
     register: function (req, res) {
         const email = req.body.email;
         const username = req.body.username;
@@ -35,7 +35,7 @@ module.exports = {
             return res.status(400).json({ 'error': 'password non valide [min 8 caractéres / min : 1 miniscule / min : 1 majuscule / min : 1 number / min : 1 caractére spé (!@#$%^&*)]' })
         }*/
         // bio 5 NON OBLIGATOIRE mais si remplis Min(30)-max(220)
-        if (BIO <= 30 ) {
+        if (BIO <= 30) {
             return res.status(400).json({ 'error': 'Vueillez vous decrire avec un text de minimum 30 caractére et maximum 220' })
         }
 
@@ -59,11 +59,13 @@ module.exports = {
                                         mdp: hashMdp,
                                         BIO: BIO,
                                         isAdmin: 0
-                                    }).then(function (User) {
-                                        return res.status(201).json({ User })
-                                    }).catch(function (err) {
-                                        return res.status(500).json({ 'error': 'code error' })
                                     })
+                                        .then(function (User) {
+                                            return res.status(201).json({ User })
+                                        })
+                                        .catch(function (err) {
+                                            return res.status(500).json({ 'error': 'code error' })
+                                        })
                                 })
                             } else {
                                 return res.status(401).json({ 'error': 'username existant' })

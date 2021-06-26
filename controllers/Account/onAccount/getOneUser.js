@@ -6,11 +6,11 @@ const jwtUtils = require('../../../utils/jwt.utils')
 module.exports = {
     getOneUser: async function (req, res) {
         const HeaderAuth = req.headers['authorization'];
-        const userId = jwtUtils.grabId(HeaderAuth);
+        const userId = jwtUtils.getUserId(HeaderAuth);
 
         if (userId < 0)
             return res.status(400).json({ 'error': 'invalide Token' })
-
+        
         await models.User.findOne({
             attributes: ['id', 'email', 'username', 'BIO'],
             where: { id: userId },
