@@ -10,13 +10,13 @@ const postDelete = require("../controllers/Post/deletePost");
 //create
 router.post("/createPost", postCreate.createPost);
 //getOne
-//router.get("/getOnePost/:id", postGetOne.getOnePost);
+router.get("/getOnePost/:id", postGetOne.getOnePost);
 //getAll
 router.get("/getAllPost", postGetAll.getAllPost );
 //modify
-//router.put("/modifyPost/", postModify.modifyPost );
+router.put("/modifyPost/:id", postModify.modifyPost );
 //delete
-//router.delete('/deletePost/', postDelete.deletePost);
+router.delete('/deletePost/:id', postDelete.deletePost);
 
 
 

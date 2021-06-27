@@ -172,3 +172,20 @@ API REST create : basique
 							Postman :OK
 						-getAllPost.js : OK
 							Postman : OK 
+							
+	
+		------> commit " Reparation + structure Post + logique createPost "	
+		
+			- modification logique getAllPost.js : ajout d'un tri par date de création . 
+			
+			- création de la logique :
+			
+						-getOnePost.js : OK
+							Postman : OK
+						-modifyPost.js : OK
+							Postman : OK
+						-deletePost.js : OK
+							Postman : OK
+							
+		------> commit " Logique route Post basique "	
+						
