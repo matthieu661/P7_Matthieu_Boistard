@@ -5,7 +5,7 @@ const express = require('express');
 // routes const :
 const userRoutes = require('./routes/user-routes')
 const postRoutes = require('./routes/post-routes')
-
+const likeRoutes = require('./routes/like-routes');
 
 // express
 const app = express();
@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", userRoutes);
 // route post :
 app.use("/api/posts", postRoutes);
-// route test :
-
+// route like :
+app.use("/api/rate", likeRoutes);
 
 
 module.exports = app;

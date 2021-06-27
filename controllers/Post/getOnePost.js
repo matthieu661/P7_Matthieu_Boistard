@@ -11,16 +11,17 @@ module.exports = {
             return res.status(400).json({ 'error': 'invalide Token' })
 
         await models.User.findOne({
+            attributes: ['id', 'email', 'username', 'BIO'],
             where: { id: userId }
         }).then(async function (user) {
             if (user) {
                 await models.Post.findOne({
                     where: { id: req.params.id },
-                    include : {
-                        model : models.User,
-                        attributes : ['username'] 
-                    }
+
+                    include: [models.User]
+                    
                 }).then(function (post) {
+                    console.log(post)
                     if (post) {
                         res.status(200).send(post);
                     }

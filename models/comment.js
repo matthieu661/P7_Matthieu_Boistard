@@ -11,41 +11,50 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.User.belongToMany(models.Post, {
+      models.User.belongsToMany(models.Post, {
         through: models.Like,
-        foreignKey : 'userId',
+        foreignKey: 'userId',
         otherKey: 'postId',
       });
-      models.User.belongToMany(models.User, {
-        through : models.Like,
-        foreignKey : 'userId',
+      models.Post.belongsToMany(models.User, {
+        through: models.Like,
+        foreignKey: 'userId',
         otherKey: 'userId',
       });
-      models.User.belongTo(models.User, {
-        foreignKey : 'userId',
-        as: 'userId',
+      models.Like.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'userC',
       });
-      models.User.belongTo(models.Post, {
-        foreignKey : 'postId',
-        as: 'postId',
+      models.Like.belongsTo(models.Post, {
+        foreignKey: 'postId',
+        as: 'postC',
       });
     }
   };
   Comment.init({
-    postId: DataTypes.INTEGER,
-    references : {
-      model : 'Post',
-      key : 'id'
+    postId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Post',
+        key: 'id'
+      },
     },
-    userId: DataTypes.INTEGER,
-    references : {
-      model : 'User',
-      key : 'id'
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'User',
+        key: 'id'
+      },
     },
-    postReply: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Comment',
-  });
+    postReply: {
+
+      type: DataTypes.TEXT,
+      AllowNull: false
+    },
+  },
+    {
+      sequelize,
+      modelName: 'Comment',
+    });
   return Comment;
 };

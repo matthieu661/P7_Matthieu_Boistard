@@ -188,4 +188,60 @@ API REST create : basique
 							Postman : OK
 							
 		------> commit " Logique route Post basique "	
+		
+			- creation de 2 tables Like et Comment dans la db P7_dev
+			
+RAPEL : ---> les rows ne doivent pas avoir de " - " dans leurs nom		
+! cerveau PLS !				relation : 
+				
+				1 Like appartient à 1 user
+				1 user a plusisieurs Like
+				et 
+				1 post a plusieurs like 
+				1 like appartient 1 seul post
+				// pareil pour comment //
+				
+				
+				donc
+				1 like appartient a 1 user et a 1 post
+				1 comment appartient a 1 user et a 1 post
+				1 post a plusieurs like de plusieurs users
+				1 users a plusieurs post et plusisuers like et plusiseurs comments
+				
+				
+				- via sequelize-cli 
+				---> sequelize db:drop ( SI db a besoin de clean) 
+				---> sequelize db:create --attributes" .... " --name Like / Comment
+				
+				- Completion des nouveaux fichiers : 
+				---> ajout des relations dans ./models/comment.js et ./model/like.js
+				---> ajout des references dans ./migrations/..create-like.js et ./migrations/...create-comment.js
+				
+					- test sous workbench pour voir les associations :
+						(reverse engen..)
+						- OK
 						
+						
+		------> commit " Ajout des tables Like et Comment"	
+
+Alerte ---> erreur de structure dans les fichiers migrations : 
+				( oublie de "type : ..." )
+	   ---> erreur dans fichier model/like et models/comment :
+				( alias duppliqué pour model et like...)
+				
+				- test de tte les routes aprés un sequelize db:drop ...
+				
+				postman :
+			- createUser : ok 
+			- login : ok
+			- getOne : ok
+			- alluser : ok
+			- modify : ok
+			
+			- createPost : ok
+			- AllPost : ok
+Alerte --->	- getOne : ok MAIS le include db.user ne passe pas retourne [] ???? fonctionnait avant 
+			-modify : ok
+			
+			-deletePost : OK
+			- delete : fonctionne seulement si les Post sont supprimer avant ..

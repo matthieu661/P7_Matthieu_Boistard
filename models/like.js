@@ -12,37 +12,41 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // to tomany avant to sinon bug...pk?
-      models.User.belongToMany(models.Post, {
+      models.User.belongsToMany(models.Post, {
         through: models.Like,
         foreignKey : 'userId',
         otherKey: 'postId',
       });
-      models.User.belongToMany(models.User, {
+      models.Post.belongsToMany(models.User, {
         through : models.Like,
         foreignKey : 'userId',
         otherKey: 'userId',
       });
-      models.User.belongTo(models.User, {
+      models.Like.belongsTo(models.User, {
         foreignKey : 'userId',
-        as: 'userId',
+        as: 'userL',
       });
-      models.User.belongTo(models.Post, {
+      models.Like.belongsTo(models.Post, {
         foreignKey : 'postId',
-        as: 'postId',
+        as: 'postL',
       });
 
     }
   };
   Like.init({
-    postId: DataTypes.INTEGER,
-    references : {
-      model : 'Post',
-      key : 'id'
+    postId:{
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Post',
+        key: 'id'
+      }
     },
-    userId: DataTypes.INTEGER,
-    references : {
-      model : 'User',
-      key : 'id'
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
     },
   }, {
     sequelize,
