@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     attachement: DataTypes.STRING,
-    likes: DataTypes.INTEGER
+    likes: {type : DataTypes.INTEGER, defaultValue: 0 }, 
+    dislikes : {type : DataTypes.INTEGER, defaultValue: 0 },
   }, {
     sequelize,
     modelName: 'Post',

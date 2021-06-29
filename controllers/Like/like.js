@@ -68,7 +68,7 @@ module.exports = {
                             await models.Dislike.destroy(
                                 // sur la row qui a userId et postId correspondant
                                 { where: { userId: userId, postId: postId } }
-                            );
+                            ),
                             // invoque la methode findOne dans Post
                             await models.Post.findOne({
                                 // sur la row qui a postId correspondant
@@ -80,10 +80,15 @@ module.exports = {
                                 //si vrai
                                 if (post) {
                                     // incremente la valeur de likes
+                                    post.dislikes -= 1;
                                     post.likes += 1;
                                 }
                                 // invoque la methode save pour update le post.likes
-                                await post.save({ fields: ['likes'] });
+                                const newPost =await post.save({ fields: ['likes', 'dislike'] });
+                                return res.status(200).json({
+                                    post: newPost,
+                                    message: "modifié"
+                                })
 
                             }).catch(function (err) {
                                 return res.status(500).json({ 'error': 'error dans block code 0' });

@@ -6,6 +6,7 @@ const userDisliked = require('../controllers/Like/dislike');
 
 //like
 router.post('/:id/like', userLiked.like );
+router.post('/:id/dislike', userDisliked.dislike);
 
 
 

@@ -244,4 +244,19 @@ Alerte --->	- getOne : ok MAIS le include db.user ne passe pas retourne [] ???? 
 			-modify : ok
 			
 			-deletePost : OK
-			- delete : fonctionne seulement si les Post sont supprimer avant ..
+			- delete : fonctionne seulement si les Post sont supprimer avant .. 
+					edit : OK (il faut regenerer les table via sequelize-cli sinon ça ne prend pas le 'on cascade'
+			
+			pause //
+			
+			- creation de la logique de like et dislike 
+			
+			-edit : aprés sessions mentor l'ajout d'une table dislike est preconisé
+			
+			- création de la table dislike
+			- modification du models pour Post ( ajout dislikes ) 
+			- db:drop / db:create / db:migrate
+			- fix logique Like/Dislike : OK 
+				Postman :OK
+				
+		------> commit " Ajout de la table dislike, clean:db, logique like/dislike "	
