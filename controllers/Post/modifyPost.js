@@ -14,7 +14,6 @@ module.exports = {
             where: { id: userId }
         }).then(async function (user) {
             if (user) {
-                console.log('hello')
                 await models.Post.findOne({
                     where: { id: req.params.id }
                 }).then(async function (post) {
@@ -29,9 +28,9 @@ module.exports = {
                             post.attachement = req.body.attachement
                         }
                         const newPost = await post.save({ fields: ['title','content','attachement']});
-                            return res.status(200).json({
+                            return res.status(201).json({
                                 post: newPost,
-                                messageRetour: "update validé"
+                                message: "update validé"
                             });
                     }
                     else {

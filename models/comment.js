@@ -46,9 +46,16 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       },
     },
+    userName : {
+      type: DataTypes.STRING,
+      references : {
+        model : 'User',
+        key : 'username'
+      }
+    },
     postReply: {
 
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       AllowNull: false
     },
   },

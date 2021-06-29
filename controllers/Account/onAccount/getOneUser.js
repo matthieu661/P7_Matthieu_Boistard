@@ -14,7 +14,7 @@ module.exports = {
         await models.User.findOne({
             attributes: ['id', 'email', 'username', 'BIO'],
             where: { id: userId },
-            include : [models.Post]
+            include : [models.Post, models.Comment]
         }).then(function (user) {
             if (user) {
                 res.status(200).send(user);

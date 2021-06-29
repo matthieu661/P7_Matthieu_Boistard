@@ -6,36 +6,35 @@ module.exports = {
     getOnePost: async function (req, res) {
         const HeaderAuth = req.headers['authorization'];
         const userId = jwtUtils.getUserId(HeaderAuth);
-
         if (userId < 0)
             return res.status(400).json({ 'error': 'invalide Token' })
 
-        await models.User.findOne({
-            attributes: ['id', 'email', 'username', 'BIO'],
-            where: { id: userId }
-        }).then(async function (user) {
-            if (user) {
-                await models.Post.findOne({
-                    where: { id: req.params.id },
+        await models.Post.findOne({
+            attributes: ['id', 'title', 'content', 'likes', 'dislikes'],
+            where: { id: req.params.id },
+        }).then(async function (post) {
 
-                    include: [models.User]
-                    
-                }).then(function (post) {
-                    console.log(post)
-                    if (post) {
-                        res.status(200).send(post);
-                    }
-                    else {
-                       return res.status(404).json({ 'error': 'Erreur dans la recupération du post' });
-                    }
+            await models.User.findOne({
+                attributes : ['username'],
+                where: { id: userId }
+            }).then(async function (user) {
+                await models.Comment.findAll({
+                    attributes : ['postReply', 'username'],
+                    where : { postId : req.params.id}, 
+                })
+                .then(function (comment){
+                    const One = { post, user, comment}
+                res.status(200).json(One)
                 }).catch(function (err) {
-                   return res.status(500).json({ 'error': 'server erreur' })
+                    res.status(500).json({ 'error': 'server erreur sur COMMENT' })
                 });
-            } else {
-               return res.status(404).json({ 'error': 'Erreur identification' });
-            }
+            }).catch(function (err) {
+                res.status(500).json({ 'error': 'server erreur sur USER' })
+            });
         }).catch(function (err) {
-           return res.status(500).json({ 'error': 'server erreur' })
+            res.status(500).json({ 'error': 'server erreur sur POST' })
         });
+
+
     }
 }

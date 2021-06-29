@@ -258,5 +258,28 @@ Alerte --->	- getOne : ok MAIS le include db.user ne passe pas retourne [] ???? 
 			- db:drop / db:create / db:migrate
 			- fix logique Like/Dislike : OK 
 				Postman :OK
+			- reTest de toutes les routes implantées : OK
+				Postman :OK
 				
-		------> commit " Ajout de la table dislike, clean:db, logique like/dislike "	
+				
+		------> commit " Ajout de la table dislike, clean:db, logique like/dislike, reTest routes : OK "	
+		
+			- creation de la logique pour les commentaires :
+				-create comment : ./createCommentCTRL.js : OK
+					Postman : OK
+				-modify comment : ./modifyCommentCTRL.js : OK 
+					Postman : OK
+				-delete comment : ./deleteCommentCTRL.js :OK
+					Postan : OK
+					
+			- rework fonction getOnePost ( n'arrivais pas a acceder a la table " comment " ) 
+				- ajout dans le model comment d'une collone username avec pour reference : user et key : username
+				- ajout dans le fichier migration de la collone username
+				
+			- modification de la logique pour createComment ( ajout de 'username' ) 
+			
+			- création du chemin de App.js --> comment-routes.js ---> ./controllers/comment...
+			
+			-reTest de toutes les routes
+			
+		------> commit " Ajout de la logique des routes-comment / rework fonction getOnePost / clean db / test de toutes les routes "

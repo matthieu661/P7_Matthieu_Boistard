@@ -26,6 +26,11 @@ module.exports = {
         },
         onDelete : 'CASCADE'
       },
+      userName: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        onDelete : 'CASCADE'
+      },
       postReply: {
         allowNull: false,
         type: Sequelize.TEXT,
