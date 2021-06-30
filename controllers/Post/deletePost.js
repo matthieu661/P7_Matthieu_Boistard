@@ -15,9 +15,9 @@ module.exports = {
         await models.User.findOne({
             where: { id: userId }
         }).then(async function () {
-            console.log(isAdmin)
-            console.log(idPost.UserId)
-            console.log(userId)
+            //console.log(isAdmin)
+            //console.log(idPost.UserId)
+            //console.log(userId)
             if ( userId === idPost.UserId || isAdmin == true) {
                 await models.Post.findOne({
                     where: { id: req.params.id }

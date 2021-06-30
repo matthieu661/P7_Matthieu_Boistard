@@ -12,18 +12,20 @@ module.exports = {
 
         await models.User.findOne({
             where: { id: userId },
-
         })
             .then(async function (user) {
-                if (user) {
-                   await models.User.destroy({
+                // faire une fonction séparée pour le mode admin
+                if (userId === user.id) {
+                    //console.log(user.id)
+                    //console.log(userId)
+                    await models.User.destroy({
                         where: {
                             id: userId
                         },
-                    }).then(() => res.send( "Bonne continuation Amigos"));
-                    
-                }else{
-                    res.status(404).json({ 'error': 'probleme dans block code 1' }); 
+                    }).then(() => res.send("Bonne continuation Amigos"));
+
+                } else {
+                    res.status(404).json({ 'error': 'userId error' });
                 }
             }).catch(function (err) {
                 return res.status(500).json({ 'error': 'error dans block code 2' });

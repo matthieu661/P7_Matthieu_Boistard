@@ -313,3 +313,12 @@ Alerte --->	- getOne : ok MAIS le include db.user ne passe pas retourne [] ???? 
 				-clean db:drop
 				
 		------> commit " Admin Role : pour modier/ supprimer un post et modifier/supprimer un comment"
+		
+				- modification de deleteUser
+					
+					
+				-Securité :	
+						- Installation du module NPM cors --> app.use(cors());
+						- Installation du module Helmet --> app.use(Helmet());
+						- Installation de express-rate-limite --> app.use(allroute);
+								-possible ajout : express-validator (si pas trop en retard ok) 
