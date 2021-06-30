@@ -296,6 +296,20 @@ Alerte --->	- getOne : ok MAIS le include db.user ne passe pas retourne [] ???? 
 				
 				
 		------> commit " Admin Role : test sur modifyCommentCTRL.js / modification logique / creation de la function getUserRole dans utils.js"
+				
 					Postman : OK
-				- Modification de la logique de
+				- Modification de la logique de deeteComment.CTRL.js : OK	
+					Postman : OK
+				- Modification de la logique de deletePost.js : OK
+					Postman : OK
+				- Modification de la logique de modifyPost.js : OK
+					Postman ;OK
 					
+				- Modification du models Post et de la table de migration :
+					- ajout d'une collone username relié a la table User
+					
+				- bug dans function like : a voir
+				
+				-clean db:drop
+				
+		------> commit " Admin Role : pour modier/ supprimer un post et modifier/supprimer un comment"

@@ -18,10 +18,10 @@ module.exports = {
         await models.User.findOne({
             where: { id: userId }
         }).then(async function(){
-            console.log(isAdmin)
-            console.log(idComment.userId)
-            console.log(userId)
-            if( userId === idComment.id || isAdmin == true ){ 
+            //console.log(isAdmin)
+            //console.log(idComment.userId)
+            //console.log(userId)
+            if( userId === idComment.userId || isAdmin == true ){ 
                 await models.Comment.findOne({
                    where : { id : req.params.idComment} 
                 }).then(async function(comment){

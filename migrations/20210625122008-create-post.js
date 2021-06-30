@@ -1,7 +1,5 @@
 'use strict';
 
-const { sequelize } = require("../models");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Posts', {
@@ -18,6 +16,11 @@ module.exports = {
           model: 'Users',
           key: "id"
         },
+        onDelete : 'CASCADE'
+      },
+      userName: {
+        allowNull: false,
+        type: Sequelize.STRING,
         onDelete : 'CASCADE'
       },
       title: {

@@ -28,6 +28,7 @@ module.exports = {
                 let newPost = await models.Post.create({
                     
                    title : title,
+                   userName : user.username,
                    content : content,
                    atachement : atachement,
                    like : 0,

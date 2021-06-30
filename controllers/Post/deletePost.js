@@ -6,14 +6,19 @@ module.exports = {
     deletePost: async function (req, res) {
         const HeaderAuth = req.headers['authorization'];
         const userId = jwtUtils.getUserId(HeaderAuth);
+        const isAdmin = await jwtUtils.getUserRole(HeaderAuth);
+        const idPost = await models.Post.findOne({ where : { id : req.params.id}})
 
         if (userId < 0)
             return res.status(400).json({ 'error': 'invalide Token' })
 
         await models.User.findOne({
             where: { id: userId }
-        }).then(async function (user) {
-            if (user) {
+        }).then(async function () {
+            console.log(isAdmin)
+            console.log(idPost.UserId)
+            console.log(userId)
+            if ( userId === idPost.UserId || isAdmin == true) {
                 await models.Post.findOne({
                     where: { id: req.params.id }
                 }).then(async function (post) {
