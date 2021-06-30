@@ -4,13 +4,9 @@ const models = require('../../models');
 
 module.exports = {
     login: function (req, res) {
-
         const email = req.body.email;
         const mdp = req.body.mdp;
 
-        if (email == null || mdp == null) {
-            return res.status(400).json({ 'error': 'missing params' });
-        }
         models.User.findOne({
             where: { email: email }
         })
@@ -22,7 +18,7 @@ module.exports = {
                                 'userId' : user.id,
                                 'token' : jwtUtils.generateToken(user)
                             });
-                        }else{return res.status(800).json({ 'error' : 'invalide token'})}
+                        }else{return res.status(800).json({ 'error' : 'mdp invalide'})}
                     });
                 } else {
                     return res.status(401).json({ 'error': 'utilisateur inexistant' })

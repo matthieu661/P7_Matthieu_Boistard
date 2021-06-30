@@ -12,7 +12,6 @@ module.exports = {
 
         await models.User.findOne({
             where: { id: userId },
-
         })
             .then(async function (user) {
                 if (user) {

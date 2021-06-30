@@ -13,7 +13,7 @@ module.exports = {
         
         await models.User.findOne({
             attributes: ['id', 'email', 'username', 'BIO'],
-            where: { id: userId },
+            where: { id: req.params.id },
             include : [models.Post, models.Comment]
         }).then(function (user) {
             if (user) {

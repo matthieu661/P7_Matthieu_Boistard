@@ -5,7 +5,7 @@ const jwtUtils = require('../../utils/jwt.utils')
 module.exports = {
     modifyPost: async function (req, res) {
         const HeaderAuth = req.headers['authorization'];
-        const userId = jwtUtils.getUserId(HeaderAuth);
+        const userId = await jwtUtils.getUserId(HeaderAuth);
         const isAdmin = await jwtUtils.getUserRole(HeaderAuth);
         const idPost = await models.Post.findOne({ where : { id : req.params.id}})
 
