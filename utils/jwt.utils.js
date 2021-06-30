@@ -28,5 +28,17 @@ module.exports = {
         } catch(err) { }
       }
       return userId;
-    }
+    },
+    getUserRole: function(authorization){
+      var adminRole = -1;
+      var token = module.exports.parseAuthorization(authorization);
+      if(token != null){
+        try {
+          let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
+          if(jwtToken != null)
+            adminRole = jwtToken.isAdmin;
+        } catch(err) { }
+        }
+        return adminRole;
+      }
   }

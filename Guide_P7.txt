@@ -283,3 +283,19 @@ Alerte --->	- getOne : ok MAIS le include db.user ne passe pas retourne [] ???? 
 			-reTest de toutes les routes
 			
 		------> commit " Ajout de la logique des routes-comment / rework fonction getOnePost / clean db / test de toutes les routes "
+		
+			- mise en place du control Admin :
+				- definir dans Sql un admin pour le test : OK
+					UPDATE Users 
+						-> set isAdmin ='1'
+							->WHERE id=1;
+				
+				- creation d'une function dans Utils : getUserRole
+							
+				- Modification de la logique de modifyCommentCTRL.js : OK 
+				
+				
+		------> commit " Admin Role : test sur modifyCommentCTRL.js / modification logique / creation de la function getUserRole dans utils.js"
+					Postman : OK
+				- Modification de la logique de
+					
