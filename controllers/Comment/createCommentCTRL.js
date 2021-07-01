@@ -17,7 +17,7 @@ module.exports = {
         }).then(async function (user) {
             if (user) {
                 let newComment = await models.Comment.create({ // Attention au await!
-                    postId : req.params.idPost,
+                    postId : parseInt(req.params.idPost),
                     userId : userId,
                     userName : user.username,
                     postReply: req.body.comment

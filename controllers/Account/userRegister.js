@@ -10,6 +10,7 @@ module.exports = {
         const mdp = req.body.mdp;
         const BIO = req.body.BIO
        
+        // deporté vers middlewares
        /* if (email == null || username == null || mdp == null) {
             return res.status(400).json({ 'error': 'missing params' })
         }

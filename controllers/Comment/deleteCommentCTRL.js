@@ -5,6 +5,7 @@ const jwtUtils = require('../../utils/jwt.utils')
 module.exports = {
     deleteCom: async function (req, res) {
         const HeaderAuth = req.headers['authorization'];
+        
         const userId = jwtUtils.getUserId(HeaderAuth);
         const isAdmin = await jwtUtils.getUserRole(HeaderAuth);
         const idComment = await models.Comment.findOne({ where : { id : req.params.idComment}})

@@ -15,19 +15,19 @@ module.exports = {
         }).then(async function (post) {
 
             await models.User.findOne({
-                attributes : ['username'],
+                attributes: ['username'],
                 where: { id: userId }
             }).then(async function (user) {
                 await models.Comment.findAll({
-                    attributes : ['postReply', 'username'],
-                    where : { postId : req.params.id}, 
+                    attributes: ['postReply', 'username'],
+                    where: { postId: req.params.id },
                 })
-                .then(function (comment){
-                    const One = { post, user, comment}
-                res.status(200).json(One)
-                }).catch(function (err) {
-                    res.status(500).json({ 'error': 'server erreur sur COMMENT' })
-                });
+                    .then(function (comment) {
+                        const One = { post, user, comment }
+                        res.status(200).json(One)
+                    }).catch(function (err) {
+                        res.status(500).json({ 'error': 'server erreur sur COMMENT' })
+                    });
             }).catch(function (err) {
                 res.status(500).json({ 'error': 'server erreur sur USER' })
             });

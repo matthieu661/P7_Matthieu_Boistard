@@ -4,6 +4,7 @@ const jwtUtils = require('../../utils/jwt.utils')
 module.exports = {
     modifyCom: async function (req, res) {
         const HeaderAuth = await req.headers['authorization'];
+
         const userId = await jwtUtils.getUserId(HeaderAuth);
         const isAdmin = await jwtUtils.getUserRole(HeaderAuth);
         const idComment = await models.Comment.findOne({ where : { id : req.params.idComment}})
@@ -12,9 +13,7 @@ module.exports = {
 
         //body transverse
         //test Si postId constient bien l'id
-        if (postid <= 0) {
-            return res.status(400).json({ 'error': ' No postId' })
-        }
+        
         await models.User.findOne({
             where: { id: userId }
         }).then(async function(){

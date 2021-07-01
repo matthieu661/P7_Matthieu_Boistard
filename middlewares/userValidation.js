@@ -15,7 +15,6 @@ module.exports = {
         if (!reg.regEmail.test(email)) {
             return res.status(400).json({ 'error': 'Veuillez renseigner un email valide' })
         }
-
         // Username length : (min = joe)(max = grandMaster666) 
         if (username.length <= 3 || username.length >= 15) {
             return res.status(400).json({ 'error': 'Votre pseudo doit avoir entre 3 et 15 caractéres' })
@@ -34,9 +33,7 @@ module.exports = {
     validationLogin: function (req, res, next) {
         const email = req.body.email;
         const mdp = req.body.mdp;
-        if (email == null || username == null || mdp == null) {
-            return res.status(400).json({ 'error': 'missing params' })
-        }
+        
         // validation des données :
 
         // Email valide : (emailregex.com)
