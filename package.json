@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthieu661/P7_Matthieu_Boistard.git"
+    "url": "git+https://github.com/matthieu661/P7_Matthieu_Boistard_backEnd.git"
   },
   "author": "matthieu boistard",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matthieu661/P7_Matthieu_Boistard/issues"
+    "url": "https://github.com/matthieu661/P7_Matthieu_Boistard_backEnd/issues"
   },
-  "homepage": "https://github.com/matthieu661/P7_Matthieu_Boistard#readme",
+  "homepage": "https://github.com/matthieu661/P7_Matthieu_Boistard_backEnd#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
