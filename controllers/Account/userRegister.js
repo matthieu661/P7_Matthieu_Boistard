@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const models = require('../../models');
 const reg = require('../../middlewares/regex')
+const Login =require('../Account/userLogin')
 
 module.exports = {
 
@@ -50,17 +51,23 @@ module.exports = {
                         .then(async function (noDoubleUsername) {
                             if (!noDoubleUsername) {
                                 await bcrypt.hash(mdp, 10, function (err, hashMdp) {
-                                    const newUser = models.User.create({
+                                     models.User.create({
                                         email: email,
                                         username: username,
                                         mdp: hashMdp,
                                         BIO: BIO,
                                         isAdmin: 0
                                     })
+                                    
+
+
+
+
                                         //£££££££££££££££££££££££££££££££££££££££££££££££££££££
                                         .then(function (User) {
                                             return res.status(201).json({ User })
                                         })
+
                                         .catch(function (err) {
                                             return res.status(500).json({ 'error': 'code error' })
                                         })

@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 //securité
 const cors = require('cors');
@@ -12,7 +13,7 @@ const limiter = rateLimit({
     max: 10000 // limit each IP to 10000(POUR DEV) requests per windowMs
   });
 
-
+ 
 
 // routes const :
 const userRoutes = require('./routes/user-routes')
@@ -28,7 +29,7 @@ const app = express();
 
 
 // utilitaire object
-
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

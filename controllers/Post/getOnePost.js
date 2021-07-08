@@ -10,16 +10,16 @@ module.exports = {
             return res.status(400).json({ 'error': 'invalide Token' })
 
         await models.Post.findOne({
-            attributes: ['id', 'title', 'content', 'likes', 'dislikes'],
+            attributes: ['id', 'title', 'userName', 'userId', 'content', 'likes', 'dislikes'],
             where: { id: req.params.id },
         }).then(async function (post) {
 
-            await models.User.findOne({
+            await models.User.findOne({ // useless à retirer ! ajout collone directement dans post 'userName' 
                 attributes: ['username'],
                 where: { id: userId }
             }).then(async function (user) {
                 await models.Comment.findAll({
-                    attributes: ['postReply', 'username'],
+                    attributes: ['postReply', 'username','id'],
                     where: { postId: req.params.id },
                 })
                     .then(function (comment) {

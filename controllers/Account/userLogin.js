@@ -15,6 +15,8 @@ module.exports = {
                     bcrypt.compare(mdp, user.mdp, function(notequal, equal) {
                         if(equal){
                             return res.status(200).json({ 
+                                'userName' : user.username,
+                                'isAdmin': user.isAdmin,
                                 'userId' : user.id,
                                 'token' : jwtUtils.generateToken(user)
                             });

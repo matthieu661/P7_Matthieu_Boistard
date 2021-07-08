@@ -23,7 +23,7 @@ module.exports = {
                         user.username = req.body.username
                     }
                     const newUser = await user.save({ fields: ["username", "BIO"] }); // on sauvegarde les changements dans la bdd
-                    return res.status(200).json({
+                    return res.status(201).json({
                         user: newUser,
                         messageRetour: "update validé",
                     });

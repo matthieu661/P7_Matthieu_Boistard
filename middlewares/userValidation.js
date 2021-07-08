@@ -25,7 +25,7 @@ module.exports = {
         }*/
 
         // bio 5 NON OBLIGATOIRE mais si remplis Min(30)-max(220)
-        if (BIO.length <= 30) {
+        if (BIO.length >= 300 ) {
             return res.status(400).json({ 'error': 'Vueillez vous decrire avec un text de minimum 30 caractére et maximum 220' })
         }
         next();
