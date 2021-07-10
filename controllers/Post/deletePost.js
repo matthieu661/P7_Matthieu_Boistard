@@ -1,6 +1,6 @@
 const models = require('../../models');
 const jwtUtils = require('../../utils/jwt.utils')
-
+const fs = require("fs"); //
 
 module.exports = {
     deletePost: async function (req, res) {
@@ -24,11 +24,32 @@ module.exports = {
                     where: { id: req.params.id }
                 }).then(async function (post) {
                     if (post) {
-                        await models.Post.destroy({
+                        console.log(post)
+                        if (post.attachement) {
+                            const filename = post.attachement.split("/images")[1];
+                            fs.unlink(`images/${filename}`, () => {
+                                console.log(` Deleted file: images/${filename}`);
+                                models.Post.destroy({ where: { id: post.id } })
+                                
+                                res.status(200).json({ message: "Post supprimé" });
+                            });
+                        } else {
+
+                            await models.Post.destroy({
+                                where: { id: post.id }
+                            },
+                                { truncate: true });
+                            return res.status(200).json({ message: "Post supprimé" });
+                        }
+
+
+
+
+                        /*await models.Post.destroy({
                             where: { id: post.id }
                         },
                             { truncate: true });
-                        return res.status(200).json({ message: "Post supprimé" });
+                        return res.status(200).json({ message: "Post supprimé" });*/
                     }
                     else {
                         return res.status(404).json({ 'error': 'Erreur dans la suppression du post' });

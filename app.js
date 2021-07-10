@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 //securité
 const cors = require('cors');
@@ -32,6 +33,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //securité :
 app.use(cors());

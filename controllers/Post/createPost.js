@@ -1,45 +1,60 @@
 const models = require('../../models');
 const jwtUtils = require('../../utils/jwt.utils')
 
+
 module.exports = {
     createPost: async function (req, res) {
 
         const HeaderAuth = await req.headers['authorization'];
         const userId = await jwtUtils.getUserId(HeaderAuth);
+        let imageUrl;
 
-
-        const title = req.body.title; // no null
-        const content = req.body.content; // no null
-        const atachement = req.body.atachement; 
+        const POST = req.body; // no null
+        console.log(POST)
 
         // validation donée 
-        if (title == null || content == null) {
+        if (POST.title == null || POST.content == null) {
             return res.status(400).json({ 'error': 'remplir le titre et la description' });
         }
-        if (title.lenght < 2 || title.lenght > 30 || content.length < 2) {
+        if (POST.title.lenght < 2 || POST.title.lenght > 30 || POST.content.length < 2) {
             return res.status(400).json({ 'error': ' title:[2min-30max] / content:[2min]' })
         }
+        // pour les images :
+
 
         await models.User.findOne({
             where: { id: userId }
-        }).then(async function(user){
-            if(user){
-                let user = await models.User.findOne({ where: {id : userId} })
-                let newPost = await models.Post.create({
+
+        }).then(async function (user) {
+
+            if (user) {
+                console.log("helloooooooooo")
+                if (req.file) {
                     
-                   title : title,
-                   userName : user.username,
-                   content : content,
-                   atachement : atachement,
-                   like : 0,
-                   UserId : user.id,
+                    imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+                
+                } else {
+                    imageUrl = null;
+                }
+                console.log(imageUrl)
 
-                   
-                   
-                }) ;
-                return res.status(201).json({ newPost : newPost }) 
+                let user = await models.User.findOne({ where: { id: userId } })
+                let newPost = await models.Post.create({
 
-            }else{
+                    title: POST.title,
+                    userName: user.username,
+                    content: POST.content,
+                    attachement: imageUrl,
+                    like: 0,
+                    UserId: user.id,
+
+
+
+                });
+                
+                return res.status(201).json({ newPost: newPost })
+
+            } else {
                 res.status(404).json({ 'error': 'user not found' });
             }
         }).catch(function (err) {

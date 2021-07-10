@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   Post.init({
     title: DataTypes.STRING,
-    content: DataTypes.STRING,
-    attachement: DataTypes.STRING,
+    content: DataTypes.STRING, 
+    attachement: { type : DataTypes.STRING, allowNull : true },
     likes: {type : DataTypes.INTEGER, defaultValue: 0 }, 
     dislikes : {type : DataTypes.INTEGER, defaultValue: 0 },
     userName : {

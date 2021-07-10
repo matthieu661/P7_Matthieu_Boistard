@@ -10,7 +10,7 @@ module.exports = {
             return res.status(400).json({ 'error': 'invalide Token' })
 
         await models.Post.findOne({
-            attributes: ['id', 'title', 'userName', 'userId', 'content', 'likes', 'dislikes'],
+            attributes: ['id', 'title', 'userName', 'userId', 'content', 'attachement','likes', 'dislikes'],
             where: { id: req.params.id },
         }).then(async function (post) {
 
