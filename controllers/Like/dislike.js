@@ -85,7 +85,7 @@ module.exports = {
                                 }
                                 
                                 // invoque la methode save pour update le post.likes
-                                const newPost =await post.save({ fields: ['likes', 'dislike'] });
+                                const newPost =await post.save({ fields: ['likes', 'dislikes'] });
                                 return res.status(200).json({
                                     post: newPost,
                                     message: "modifié"
@@ -96,10 +96,7 @@ module.exports = {
                             })
                         } else { // si NON PRESENT DANS DISLIKE
                             // invoque create dans la table Like pour ajouter une row
-                            await models.Dislike.create({
-                                userId: userId,
-                                postId: postId,
-                            })
+                            
                             // invoque FindOne dans POST
                             await models.Post.findOne({
                                 where: {
@@ -120,6 +117,10 @@ module.exports = {
                                 })
                             })
                         }
+                    })
+                    await models.Dislike.create({
+                        userId: userId,
+                        postId: postId,
                     })
                 }
             })

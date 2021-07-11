@@ -19,7 +19,7 @@ module.exports = {
                 where: { id: userId }
             }).then(async function (user) {
                 await models.Comment.findAll({
-                    attributes: ['postReply', 'username','id'],
+                    attributes: ['postReply', 'username','id', 'userId'],
                     where: { postId: req.params.id },
                 })
                     .then(function (comment) {

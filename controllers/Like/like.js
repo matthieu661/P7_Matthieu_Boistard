@@ -22,7 +22,9 @@ module.exports = {
             //alors passe le resultat
             .then(async function (find) {
                 //si resultat true (ANNULE LE LIKE)
+                
                 if (find) {
+                    
                     // invoque la methode destroy 
                     await models.Like.destroy(
                         // sur le resultat de la table like
@@ -61,7 +63,7 @@ module.exports = {
                         where: { userId: userId, postId: postId },
                         // alors transmet le resultat du findOne
                     }).then(async function (dislike) {
-
+                            
                         // si vrai (EFFACE LE DISLIKE)
                         if (dislike) {
                             //invoque la methode destroy dans Dislike
@@ -78,13 +80,16 @@ module.exports = {
                                 //alors transmet le resultat
                             }).then(async function (post) {
                                 //si vrai
+                                
                                 if (post) {
+                                    
                                     // incremente la valeur de likes
                                     post.dislikes -= 1;
                                     post.likes += 1;
                                 }
+                                
                                 // invoque la methode save pour update le post.likes
-                                const newPost =await post.save({ fields: ['likes', 'dislike'] });
+                                const newPost =await post.save({ fields: ['likes', 'dislikes'] });
                                 return res.status(200).json({
                                     post: newPost,
                                     message: "modifié"
@@ -95,10 +100,7 @@ module.exports = {
                             })
                         } else { // si NON PRESENT DANS DISLIKE
                             // invoque create dans la table Like pour ajouter une row
-                            await models.Like.create({
-                                userId: userId,
-                                postId: postId,
-                            })
+                            
                             // invoque FindOne dans POST
                             await models.Post.findOne({
                                 where: {
@@ -119,6 +121,11 @@ module.exports = {
                                 })
                             })
                         }
+                        
+                    })
+                    await models.Like.create({
+                        userId: userId,
+                        postId: postId,
                     })
                 }
             })
