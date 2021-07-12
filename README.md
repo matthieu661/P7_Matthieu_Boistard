@@ -99,3 +99,25 @@ ps> yarn run serve
 connectez vous au http://localhost:8080/.
 
 
+## USER ADMIN
+Pour créer un compte Modérateur ou admin :
+
+## 1 créer un compte :
+
+http://localhost:8080/
+--> connexion --> s'enregister --> se deconecter
+
+## 2 Se connecter a MySql et entrer les commandes suivantes :
+
+mysql>	SHOW databases ;
+
+mysql>	USE p7_dev ;
+
+mysql>	SELECT * from USERS ;
+(pour controler que votre utilisateur est bien présent)
+
+mysql> UPDATE users
+	>SET isAdmin=1
+	>WHERE id=X ; (X = l'id de l'utilisateur)
+
+## l'utilisateur correspondant est maintenant Admin.
