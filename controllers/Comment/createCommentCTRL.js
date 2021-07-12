@@ -17,14 +17,14 @@ module.exports = {
         }).then(async function (user) {
             if (user) {
                 let newComment = await models.Comment.create({ // Attention au await!
-                    postId : parseInt(req.params.idPost),
-                    userId : userId,
-                    userName : user.username,
+                    postId: parseInt(req.params.idPost),
+                    userId: userId,
+                    userName: user.username,
                     postReply: req.body.comment
-                 }) 
-                 
-                 return res.status(201).json({ newComment, message : "succes" })
-            }else{
+                })
+
+                return res.status(201).json({ newComment, message: "succes" })
+            } else {
                 res.status(404).json({ 'error': 'user not found' });
             }
         }).catch(function (err) {

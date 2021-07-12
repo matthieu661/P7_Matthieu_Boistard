@@ -1,20 +1,17 @@
 const models = require('../../models');
 const jwtUtils = require('../../utils/jwt.utils')
 
-
 module.exports = {
     getOnePost: async function (req, res) {
         const HeaderAuth = req.headers['authorization'];
         const userId = jwtUtils.getUserId(HeaderAuth);
         if (userId < 0)
             return res.status(400).json({ 'error': 'invalide Token' })
-
         await models.Post.findOne({
             attributes: ['id', 'title', 'userName', 'userId', 'content', 'attachement','likes', 'dislikes'],
             where: { id: req.params.id },
         }).then(async function (post) {
-
-            await models.User.findOne({ // useless à retirer ! ajout collone directement dans post 'userName' 
+            await models.User.findOne({ 
                 attributes: ['username'],
                 where: { id: userId }
             }).then(async function (user) {

@@ -20,12 +20,11 @@ module.exports = {
             return res.status(400).json({ 'error': 'Votre pseudo doit avoir entre 3 et 15 caractéres' })
         }
         // mdp complexité : [min 8 caractéres / min : 1 miniscule / min : 1 majuscule / min : 1 number / min : 1 caractére spé (!@#$%^&*)]
-        /*if (!reg.regMdp.test(mdp)){
+        if (!reg.regMdp.test(mdp)){
             return res.status(400).json({ 'error': 'password non valide [min 8 caractéres / min : 1 miniscule / min : 1 majuscule / min : 1 number / min : 1 caractére spé (!@#$%^&*)]' })
-        }*/
-
-        // bio 5 NON OBLIGATOIRE mais si remplis Min(30)-max(220)
-        if (BIO.length >= 300 ) {
+        }
+        // bio 5 NON OBLIGATOIRE mais si remplis Min(1)-max(254)
+        if (BIO.length >= 254 ) {
             return res.status(400).json({ 'error': 'Vueillez vous decrire avec un text de minimum 30 caractére et maximum 220' })
         }
         next();
@@ -41,9 +40,9 @@ module.exports = {
             return res.status(400).json({ 'error': 'Veuillez renseigner un email valide' })
         }
         // mdp complexité : [min 8 caractéres / min : 1 miniscule / min : 1 majuscule / min : 1 number / min : 1 caractére spé (!@#$%^&*)]
-        /*if (!reg.regMdp.test(mdp)){
+        if (!reg.regMdp.test(mdp)){
             return res.status(400).json({ 'error': 'password non valide [min 8 caractéres / min : 1 miniscule / min : 1 majuscule / min : 1 number / min : 1 caractére spé (!@#$%^&*)]' })
-        }*/
+        }
         next();
     }
 
