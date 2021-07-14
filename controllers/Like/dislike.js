@@ -45,6 +45,7 @@ module.exports = {
                             post: newPost,
                             message: " dislike reset"
                         });
+                        // correction avant soutenance <--------------------
                     })
                     // returne confirmation du reset
                     // sinon 
@@ -109,7 +110,7 @@ module.exports = {
                                     message: "dislike ajouté"
                                 })
                             })
-                        }
+                        }//corection avant soutenance
                     })
                     await models.Dislike.create({
                         userId: userId,

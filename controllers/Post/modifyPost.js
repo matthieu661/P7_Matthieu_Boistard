@@ -43,7 +43,10 @@ module.exports = {
                         if (req.file) {
                             post.attachement = newImageUrl
                         }
-                        const newPost = await post.save({ fields: ['title', 'content', 'attachement'] });
+                        if (req.body.userName){
+                            post.userName = req.body.userName
+                        }
+                        const newPost = await post.save({ fields: ['title', 'content', 'attachement', 'userName'] });
                         return res.status(201).json({
                             post: newPost,
                             message: "update validé"

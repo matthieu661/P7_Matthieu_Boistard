@@ -107,10 +107,10 @@ module.exports = {
                                 return res.status(200).json({
                                     post: newPost,
                                     message: "like ajouté"
-                                })
+                                })//correction avant soutenance
                             })
                         }
-
+                    // correction avant soutenance
                     })
                     await models.Like.create({
                         userId: userId,

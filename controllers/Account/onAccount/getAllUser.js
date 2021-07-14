@@ -6,6 +6,8 @@ module.exports = {
             attributes : ['username', 'BIO', 'id']
             // selection plus fine des elements à afficher ici 
         }).then(allUsers => res.send(allUsers))
+        // correction Avant soutenance
+        
     }
 }
 

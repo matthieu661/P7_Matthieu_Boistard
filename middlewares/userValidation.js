@@ -10,7 +10,6 @@ module.exports = {
             return res.status(400).json({ 'error': 'missing params' })
         }
         // validation des données :
-
         // Email valide : (emailregex.com)
         if (!reg.regEmail.test(email)) {
             return res.status(400).json({ 'error': 'Veuillez renseigner un email valide' })
@@ -25,7 +24,7 @@ module.exports = {
         }
         // bio 5 NON OBLIGATOIRE mais si remplis Min(1)-max(254)
         if (BIO.length >= 254 ) {
-            return res.status(400).json({ 'error': 'Vueillez vous decrire avec un text de minimum 30 caractére et maximum 220' })
+            return res.status(400).json({ 'error': 'Veuillez vous decrire avec un text de minimum 10 caractére et maximum 254' })
         }
         next();
     },
@@ -34,7 +33,6 @@ module.exports = {
         const mdp = req.body.mdp;
         
         // validation des données :
-
         // Email valide : (emailregex.com)
         if (!reg.regEmail.test(email)) {
             return res.status(400).json({ 'error': 'Veuillez renseigner un email valide' })
