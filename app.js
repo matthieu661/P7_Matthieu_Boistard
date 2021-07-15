@@ -17,6 +17,12 @@ const postRoutes = require('./routes/post-routes')
 const likeRoutes = require('./routes/like-routes');
 const commentRoutes =require('./routes/comment-routes');
 
+require('dotenv').config();
+
+ 
+ 
+
+
 // express
 const app = express();
 

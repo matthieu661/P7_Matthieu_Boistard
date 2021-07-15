@@ -4,6 +4,8 @@ const app = require('./app');
 const db = require('./models/index.js');
 const { sequelize } = require('./models/index');
 
+
+require('dotenv').config();
 /* la fonction normalizePort renvoie un port valide,
  qu'il soit fourni sous la forme d'un numéro ou d'une chaîne */
 const normalizePort = val => {
