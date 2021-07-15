@@ -70,6 +70,20 @@ Using environment "development".
 == 20210627184440-create-dislike: migrated (0.040s)
 ###
 
+## creer un .dev dans le root du backend : 
+
+DB_HOST=127.0.0.1
+DB_USER=leVOTRE
+DB_PASSWORD=mdpCorrespondantDB_USER
+DB_NAME=P7_dev 
+DB_DIALECT=mysql
+
+// exemple : openclassroom en sha256 ( remplacer la par celle de votre choix ) 
+JWT_KEY=5d247c460793437146f7fd297d358e0ff78d06ef1bb5e52952dd19303560ae6b
+
+
+
+
 ### lancer le server du backEnd
 
 >nodemon serve
